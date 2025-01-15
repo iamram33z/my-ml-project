@@ -1,0 +1,15 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-Cors
+gunicorn
+pytest
+black
+pylint
+requests
+psycopg2
+numpy
+pandas
+scikit-learn
+pytest
+gunicorn

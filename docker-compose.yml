@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    container_name: app
+    ports:
+      - "5001:5001"  # Adjust port if necessary
+    environment:
+      - FLASK_ENV=development  # Set Flask environment to development (or production)
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/app  # Mount the current directory to the /app directory inside the container
+    restart: always  # Automatically restart container if it stops
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
