@@ -16,14 +16,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build and run Docker container
+      - name: Set up Docker Compose
+        run: |
+          docker-compose --version
+          
+      - name: Build Docker container
         run: |
           docker-compose build
+
+      - name: Install dependencies
+        run: |
           docker-compose run python-app make install
+
+      - name: Run Linter
+        run: |
           docker-compose run python-app make lint
+
+      - name: Run Tests
+        run: |
           docker-compose run python-app make test
 
       - name: Commit changes (if any)
