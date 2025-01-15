@@ -31,15 +31,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          docker-compose run python-app make install
+          docker-compose run app make install
 
       - name: Run Linter
         run: |
-          docker-compose run python-app make lint
+          docker-compose run app make lint
 
       - name: Run Tests
         run: |
-          docker-compose run python-app make test
+          docker-compose run app make test
 
       - name: Commit changes (if any)
         run: |
