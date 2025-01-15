@@ -26,7 +26,7 @@ def load_model(filename=MODEL_PATH):
             model = pickle.load(f)
         return model
     else:
-        raise Exception(f"Model file {filename} not found!")
+        raise FileNotFoundError(f"Model file {filename} not found!")
 
 
 def train_model(X, y):

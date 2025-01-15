@@ -12,7 +12,7 @@ MODEL_PATH = "./app/model/model.pkl"
 def initialize_model():
     """Load the trained model."""
     if not os.path.exists(MODEL_PATH):
-        raise Exception(f"Model file not found at {MODEL_PATH}")
+        raise FileNotFoundError(f"Model file not found at {MODEL_PATH}")
     return load_model(MODEL_PATH)
 
 
@@ -41,8 +41,12 @@ def make_prediction():
         # Return the prediction as JSON response
         return jsonify({"prediction": prediction.tolist()})
 
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
+    except KeyError as e:
+        return jsonify({"error": f"Missing key: {str(e)}"}), 400
+    except ValueError as e:
+        return jsonify({"error": f"Invalid value: {str(e)}"}), 400
+    except TypeError as e:
+        return jsonify({"error": f"Type error: {str(e)}"}), 400
 
 
 if __name__ == "__main__":
